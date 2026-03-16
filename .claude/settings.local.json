@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(rm d:/claud/profile/profile-claudvs/tailwind.config.mjs)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

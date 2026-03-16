@@ -1,0 +1,42 @@
+---
+const categories = [
+  {
+    title: 'Languages',
+    items: ['TypeScript', 'JavaScript', 'Python', 'SQL'],
+  },
+  {
+    title: 'Frontend',
+    items: ['React', 'Astro', 'Next.js', 'TailwindCSS'],
+  },
+  {
+    title: 'Backend',
+    items: ['Node.js', 'Express', 'PostgreSQL', 'Redis'],
+  },
+  {
+    title: 'Tools',
+    items: ['Git', 'Docker', 'Linux', 'CI/CD'],
+  },
+];
+---
+
+<section id="skills" class="py-24 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="font-mono text-accent text-sm mb-2" data-reveal>02. skills</p>
+    <h2 class="text-3xl font-bold mb-12" data-reveal>Technical Skills</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal="stagger">
+      {categories.map(({ title, items }) => (
+        <div class="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5">
+          <h3 class="text-sm font-semibold text-zinc-600 dark:text-zinc-300 mb-4 uppercase tracking-wider">{title}</h3>
+          <ul class="space-y-2">
+            {items.map((item) => (
+              <li class="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 text-sm">
+                <span class="w-1 h-1 rounded-full bg-accent flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

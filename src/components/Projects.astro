@@ -1,0 +1,45 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'API Gateway Service',
+    description:
+      'Built a high-throughput API gateway handling 10k+ requests/sec with rate limiting, authentication, and observability.',
+    tags: ['Node.js', 'TypeScript', 'Redis', 'Docker'],
+    github: '#',
+    live: '#',
+    featured: true,
+  },
+  {
+    title: 'Real-time Dashboard',
+    description:
+      'Developed a real-time analytics dashboard with WebSocket-based live updates and interactive data visualizations.',
+    tags: ['React', 'WebSockets', 'PostgreSQL', 'Chart.js'],
+    github: '#',
+    live: '#',
+    featured: false,
+  },
+  {
+    title: 'CLI Dev Tool',
+    description:
+      'Created a command-line tool that automates repetitive development workflows, reducing setup time by 80%.',
+    tags: ['Python', 'Click', 'Shell', 'Docker'],
+    github: '#',
+    live: null,
+    featured: false,
+  },
+];
+---
+
+<section id="projects" class="py-24 border-t border-zinc-200 dark:border-zinc-800">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="font-mono text-accent text-sm mb-2" data-reveal>03. projects</p>
+    <h2 class="text-3xl font-bold mb-12" data-reveal>Projects</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal="stagger">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </div>
+</section>

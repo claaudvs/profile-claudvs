@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --color-accent: #6366f1;
+}
+
+/* Scroll-reveal base state */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside a reveal container */
+[data-reveal="stagger"] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-reveal="stagger"].visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+[data-reveal="stagger"].visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
+[data-reveal="stagger"].visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
+[data-reveal="stagger"].visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 240ms; }
+[data-reveal="stagger"].visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 320ms; }
+[data-reveal="stagger"].visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 400ms; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-reveal="stagger"] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

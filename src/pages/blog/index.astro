@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = [
+  {
+    title: 'Building Fast APIs with Node.js',
+    date: '2026-02-10',
+    description: 'Practical patterns for building high-throughput REST APIs with Node.js and TypeScript.',
+    slug: 'building-fast-apis',
+  },
+  {
+    title: 'TypeScript Patterns I Use Daily',
+    date: '2026-01-22',
+    description: 'A handful of TypeScript patterns that make codebases more maintainable and catch bugs earlier.',
+    slug: 'typescript-tips',
+  },
+];
+---
+
+<Layout title="Blog | Dev Portfolio" description="Technical writing on software development">
+  <Nav />
+  <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
+    <h1 class="text-4xl font-bold mb-2">Blog</h1>
+    <p class="text-zinc-400 mb-12">Thoughts on software development and engineering.</p>
+    <div class="space-y-px">
+      {posts.map(({ title, date, description, slug }) => (
+        <a
+          href={`/blog/${slug}`}
+          class="group flex items-start gap-6 py-5 border-b border-zinc-800 hover:border-zinc-600 transition-colors"
+        >
+          <time class="text-zinc-500 font-mono text-sm flex-shrink-0 pt-0.5">{date}</time>
+          <div>
+            <h2 class="font-medium group-hover:text-accent transition-colors mb-1">{title}</h2>
+            <p class="text-zinc-400 text-sm">{description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Layout>

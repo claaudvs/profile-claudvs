@@ -1,17 +1,39 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import BlogPreview from '../components/BlogPreview.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 
+const posts = [
+  {
+    title: 'Building Fast APIs with Node.js',
+    date: '2026-02-10',
+    description: 'Practical patterns for building high-throughput REST APIs with Node.js and TypeScript.',
+    slug: 'building-fast-apis',
+  },
+  {
+    title: 'TypeScript Patterns I Use Daily',
+    date: '2026-01-22',
+    description: 'A handful of TypeScript patterns that make codebases more maintainable and catch bugs earlier.',
+    slug: 'typescript-tips',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Dev Portfolio" description="Personal developer portfolio">
+  <Nav />
+  <main>
+    <Hero />
+    <About />
+    <Skills />
+    <Projects />
+    <BlogPreview posts={posts} />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
