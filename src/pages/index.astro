@@ -8,6 +8,7 @@ import Projects from '../components/Projects.astro';
 import BlogPreview from '../components/BlogPreview.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import SocialLinks from '../components/core/SocialLinks.astro';
 
 const posts = [
   {
@@ -29,11 +30,12 @@ const posts = [
   <Nav />
   <main>
     <Hero />
-    <About />
-    <Skills />
+    <!-- <Skills /> -->
+    <!-- <About /> -->
     <Projects />
     <BlogPreview posts={posts} />
-    <Contact />
+    <!-- 
+    <Contact /> -->
   </main>
-  <Footer />
+  <!-- <Footer /> -->
 </Layout>

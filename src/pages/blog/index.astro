@@ -3,20 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
-const posts = [
-  {
-    title: 'Building Fast APIs with Node.js',
-    date: '2026-02-10',
-    description: 'Practical patterns for building high-throughput REST APIs with Node.js and TypeScript.',
-    slug: 'building-fast-apis',
-  },
-  {
-    title: 'TypeScript Patterns I Use Daily',
-    date: '2026-01-22',
-    description: 'A handful of TypeScript patterns that make codebases more maintainable and catch bugs earlier.',
-    slug: 'typescript-tips',
-  },
-];
+const rawPosts = import.meta.glob('../../content/blog/*.md', { eager: true });
+
+const posts = Object.values(rawPosts)
+  .map((post: any) => post.frontmatter)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
 <Layout title="Blog | Dev Portfolio" description="Technical writing on software development">

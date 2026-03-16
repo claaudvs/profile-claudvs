@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import type { string } from "astro:schema";
+
+export interface Props {
+    date?: string;
+    id?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    imageAlt?: string;
+    className?: string;
+}
+const {
+    date,
+    id,
+    label,
+    title,
+    description,
+    image,
+    imageAlt = "card image",
+    className,
+} = Astro.props;
+---
+
+<article
+    class:list={[
+        "rounded-lg shadow-md transition-all duration-300",
+        "px-5 py-4 md:px-6 md:py-5",
+        "flex flex-col justify-between",
+        "bg-white text-black  dark:bg-zinc-900  dark:text-white",
+        className,
+    ]}
+>
+    <div class="flex items-start justify-between text-[11px] leading-none">
+        <div class="text-black dark:text-white">
+            {date || label}
+        </div>
+        <div class="text-black dark:text-white">
+            {id}
+        </div>
+    </div>
+
+    <div class="mt-6 flex-1">
+        {
+            title && (
+                <h3 class="text-[20px] font-semibold tracking-tight">
+                    {title}
+                </h3>
+            )
+        }
+        {
+            description && (
+                <p class="font-mono my-6 space-y-4 text-black dark:text-white leading-relaxed">
+                    {description}
+                </p>
+            )
+        }
+        {
+            image && (
+                <div class="mt-4 flex justify-center">
+                    <Image
+                        class="max-h-45 w-auto object-contain"
+                        src={image}
+                        alt={imageAlt}
+                        width={400}
+                        height={300}
+                    />
+                </div>
+            )
+        }
+        <slot />
+    </div>
+</article>
