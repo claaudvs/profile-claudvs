@@ -11,11 +11,14 @@ import SocialLinks from "../components/shared/SocialLinks.astro";
     <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
         <div class="flex flex-col gap-4">
             <SocialLinks isSocialNetwork={true} />
-            <Image
+           
+            <img
                 src="/img/claud_1.png"
+                width="1600"
+                height="900"
+                decoding="async"
+                loading="lazy"
                 alt="Claud"
-                width={400}
-                height={400}
             />
             <Card label="human">
                 <div
