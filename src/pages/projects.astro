@@ -1,11 +1,135 @@
 ---
 import Nav from "../components/Nav.astro";
 import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
-
+const experience = [
+  {
+    company: "Banco Solidario",
+    role: "Frontend Developer",
+    period: "Mar 2024 — Present",
+    projects: [
+      {
+        title: "Admin Dashboard System",
+        description:
+          "Modular administrative dashboard for internal banking operations. Built with Next.js and TypeScript, focused on performance, scalability and a consistent UX across all modules.",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
+        github: null,
+        live: null,
+        featured: true,
+      },
+      {
+        title: "Internal API Integration Layer",
+        description:
+          "Connected frontend applications with internal banking systems via optimized .NET Core APIs, minimizing response times and ensuring data integrity across services.",
+        tags: [".NET Core", "TypeScript", "REST APIs", "Performance"],
+        github: null,
+        live: null,
+        featured: false,
+      },
+    ],
+  },
+  {
+    company: "Banco Fassil",
+    role: "Software Engineer",
+    period: "Aug 2021 — Jun 2023",
+    projects: [
+      {
+        title: "Account Opening SPA Migration",
+        description:
+          "Led the migration of the legacy account opening module to a modern Single Page Application in Angular. Reduced complexity, improved UX and eliminated cross-browser compatibility issues.",
+        tags: ["Angular", "TypeScript", "HTML5", "CSS3"],
+        github: null,
+        live: null,
+        featured: true,
+      },
+      {
+        title: "Frontend Performance Optimization",
+        description:
+          "Implemented a caching strategy across key web modules that reduced page load times by 40%. Identified bottlenecks and applied best practices for web performance.",
+        tags: ["Angular", "Caching", "Web Performance", "JavaScript"],
+        github: null,
+        live: null,
+        featured: false,
+      },
+      {
+        title: "Reusable Component Library",
+        description:
+          "Built a set of reusable UI components shared across internal web applications, improving consistency, reducing duplication and accelerating development cycles.",
+        tags: ["Angular", "TypeScript", "Design System", "Bootstrap"],
+        github: null,
+        live: null,
+        featured: false,
+      },
+    ],
+  },
+  {
+    company: "Banco Ganadero",
+    role: "Software Engineer — Mobile",
+    period: "Oct 2018 — Aug 2021",
+    projects: [
+      {
+        title: "Mobile Banking App",
+        description:
+          "Designed and developed user interface modules for the iOS and Android banking app. Led the creation of new features that raised the app store rating from 3.9 to 4.7.",
+        tags: ["JavaScript", "Mobile", "iOS", "Android", "UI/UX"],
+        github: null,
+        live: null,
+        featured: true,
+      },
+      {
+        title: "Online Credit & Card Request",
+        description:
+          "Implemented end-to-end digital flows for credit requests and card issuance, enabling 100% online processing. Tested across multiple devices and screen resolutions.",
+        tags: ["JavaScript", "Mobile", "REST APIs", "Responsive Design"],
+        github: null,
+        live: null,
+        featured: false,
+      },
+    ],
+  },
+];
 ---
 
-<Layout>
-    <Nav />
-    <p>Projects page content goes here.</p>
+<Layout title="Projects — Claudio Vargas" description="Professional projects developed throughout my career in the banking sector.">
+  <Nav />
+
+  <main class="max-w-5xl mx-auto px-6 py-24">
+
+    <!-- Header -->
+    <div class="mb-20" data-reveal>
+      <p class="font-mono text-accent text-sm mb-2">03. projects</p>
+      <h1 class="text-4xl font-bold mb-4">Projects</h1>
+      <p class="text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
+        Work developed throughout my career in the banking sector. All projects involve
+        internal systems — no public repositories.
+      </p>
+    </div>
+
+    <!-- Experience sections -->
+    {experience.map((exp) => (
+      <section class="mb-20">
+
+        <!-- Company header -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-8 pb-4 border-b border-zinc-200 dark:border-zinc-800" data-reveal>
+          <div>
+            <h2 class="text-xl font-semibold">{exp.company}</h2>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm">{exp.role}</p>
+          </div>
+          <span class="font-mono text-xs text-accent border border-accent/30 px-3 py-1 rounded-full self-start sm:self-auto">
+            {exp.period}
+          </span>
+        </div>
+
+        <!-- Project cards -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal="stagger">
+          {exp.projects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+
+      </section>
+    ))}
+
+  </main>
 </Layout>

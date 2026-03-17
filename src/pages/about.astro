@@ -1,15 +1,22 @@
 ---
+import { Image } from "astro:assets";
 import Card from "../components/Card.astro";
 import Nav from "../components/Nav.astro";
 import Layout from "../layouts/Layout.astro";
+import SocialLinks from "../components/shared/SocialLinks.astro";
 ---
 
 <Layout description="About me" title="Claudvs 🐈">
     <Nav />
     <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
         <div class="flex flex-col gap-4">
-            <Card label="🧑‍🚀" id="0001" image="/img/claud.png" />
-
+            <SocialLinks isSocialNetwork={true} />
+            <Image
+                src="/img/claud_1.png"
+                alt="Claud"
+                width={400}
+                height={400}
+            />
             <Card label="human">
                 <div
                     class="flex flex-col gap-4 font-mono text-sm text-black dark:text-white"
@@ -59,6 +66,14 @@ import Layout from "../layouts/Layout.astro";
                     </p>
                 </div>
             </Card>
+            <img
+                src="/img/claud.png"
+                width="1600"
+                height="900"
+                decoding="async"
+                loading="lazy"
+                alt="Claud"
+            />
         </div>
     </main>
 </Layout>
