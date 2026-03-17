@@ -13,6 +13,10 @@ const description =
 ---
 
 <section id="home" class="relative max-h-screen flex pt-14 overflow-hidden">
+  <div
+    class="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-size-[48px_48px] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)]"
+  >
+  </div>
   <Card className="w-full h-auto" title="Hello 🍕" description={description}>
     <div class="animate-fade-in-up" style="animation-delay: 100ms;">
       <SocialLinks />
@@ -25,7 +29,9 @@ const description =
       class="animate-fade-in-up bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 font-mono text-sm space-y-2"
       style="animation-delay: 300ms;"
     >
-      <p class="text-zinc-400 dark:text-zinc-500 cursor-blink">// quick facts</p>
+      <p class="text-zinc-400 dark:text-zinc-500 cursor-blink">
+        // quick facts
+      </p>
       <p>
         <span class="text-accent">const</span>
         <span class="text-zinc-700 dark:text-zinc-300">location =</span>

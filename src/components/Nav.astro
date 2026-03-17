@@ -1,24 +1,28 @@
 ---
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+
 const links = [
-  { href: '/about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '/projects', label: 'Projects' },
-  { href: '#blog', label: 'Blog' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/about', label: 'Me 🧑‍💻', anchor: false },
+  { href: '#skills', label: 'Skills 🧑‍🚀', anchor: true },
+  { href: '/projects', label: 'Projects 🚀', anchor: false },
+  { href: '/blog', label: 'Blog 🍕', anchor: false },
+  { href: '#contact', label: 'Contact ✉️', anchor: true },
 ];
 ---
 
 <header class="animate-slide-down fixed top-0 inset-x-0 z-50 bg-[#E6E6E6] dark:bg-zinc-950/80 backdrop-blur-sm transition-colors duration-200">
   <nav class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
     <a href="/" class="font-mono text-accent font-medium text-sm tracking-tight">
-      &lt;dev /&gt;
+      &lt;claud /&gt;
     </a>
     <div class="flex items-center gap-6">
-      <ul class="flex items-center gap-6">
-        {links.map(({ href, label }) => (
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-6">
+        {links.map(({ href, label, anchor }) => (
           <li>
             <a
-              href={href}
+              href={anchor ? (isHome ? href : `/${href}`) : href}
               class="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
             >
               {label}
@@ -26,29 +30,138 @@ const links = [
           </li>
         ))}
       </ul>
+
+      <!-- Theme toggle -->
       <button
         id="theme-toggle"
         aria-label="Toggle theme"
         class="w-9 h-9 flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
       >
-        <!-- Sun icon (shown in dark mode) -->
         <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block">
           <circle cx="12" cy="12" r="4"/>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
         </svg>
-        <!-- Moon icon (shown in light mode) -->
         <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden">
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+      </button>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        id="menu-open"
+        aria-label="Open menu"
+        class="md:hidden w-9 h-9 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
     </div>
   </nav>
 </header>
 
+<!-- Mobile menu overlay -->
+<div
+  id="mobile-menu"
+  aria-hidden="true"
+  class="fixed inset-0 z-100 bg-[#E6E6E6] dark:bg-zinc-950 flex flex-col
+         translate-x-full transition-transform duration-400 ease-in-out
+         md:hidden"
+>
+  <!-- Top bar -->
+  <div class="px-6 h-14 flex items-center justify-between shrink-0">
+    <a href="/" class="font-mono text-accent font-medium text-sm tracking-tight">
+      &lt;claud /&gt;
+    </a>
+    <button
+      id="menu-close"
+      aria-label="Close menu"
+      class="w-9 h-9 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Nav links centered -->
+  <ul id="mobile-links" class="flex-1 flex flex-col items-center justify-center gap-8">
+    {links.map(({ href, label, anchor }, i) => (
+      <li style={`--i:${i}`} class="mobile-link-item opacity-0 translate-y-4">
+        <a
+          href={anchor ? (isHome ? href : `/${href}`) : href}
+          class="text-3xl font-medium text-zinc-700 dark:text-zinc-200 hover:text-accent dark:hover:text-accent transition-colors tracking-tight"
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Social links bottom -->
+  <div class="px-6 pb-8 flex items-center justify-center gap-8 text-xs text-zinc-400 dark:text-zinc-500 shrink-0">
+    <a href="https://github.com" target="_blank" rel="noopener" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">GitHub</a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">LinkedIn</a>
+    <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Twitter</a>
+  </div>
+</div>
+
 <script>
+  // Theme toggle
   const toggle = document.getElementById('theme-toggle');
   toggle?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
+
+  // Mobile menu
+  const menu = document.getElementById('mobile-menu')!;
+  const openBtn = document.getElementById('menu-open')!;
+  const closeBtn = document.getElementById('menu-close')!;
+  const linkItems = menu.querySelectorAll<HTMLElement>('.mobile-link-item');
+
+  function openMenu() {
+    menu.classList.remove('translate-x-full');
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // Stagger animate links
+    linkItems.forEach((el, i) => {
+      el.style.transitionDelay = `${150 + i * 60}ms`;
+      el.classList.add('opacity-100', '!translate-y-0');
+      el.classList.remove('opacity-0', 'translate-y-4');
+    });
+  }
+
+  function closeMenu() {
+    menu.classList.add('translate-x-full');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    linkItems.forEach((el) => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('opacity-100', '!translate-y-0');
+      el.classList.add('opacity-0', 'translate-y-4');
+    });
+  }
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close when a link is clicked
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
 </script>
+
+<style>
+  .mobile-link-item {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+</style>
