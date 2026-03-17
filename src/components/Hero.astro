@@ -1,7 +1,7 @@
 ---
 import Card from "./Card.astro";
-import AvailableStatus from "./core/AvailableStatus.astro";
-import SocialLinks from "./core/SocialLinks.astro";
+import AvailableStatus from "./shared/AvailableStatus.astro";
+import SocialLinks from "./shared/SocialLinks.astro";
 
 const roles = [
   "Frontend Developer",
@@ -9,18 +9,23 @@ const roles = [
   "TypeScript Enthusiast",
 ];
 const description =
-  "Hi, I'm Claud! I build web applications and contribute to open source projects. I have a passion for TypeScript and love sharing knowledge through blogging.";
+  "Hi, I'm Claudio Vargas, a frontend engineer specialized in React and Next.js.";
 ---
 
 <section id="home" class="relative max-h-screen flex pt-14 overflow-hidden">
   <Card className="w-full h-auto" title="Hello 🍕" description={description}>
-    <SocialLinks />
-    <AvailableStatus />
+    <div class="animate-fade-in-up" style="animation-delay: 100ms;">
+      <SocialLinks />
+    </div>
+    <div class="animate-fade-in-up" style="animation-delay: 200ms;">
+      <AvailableStatus />
+    </div>
 
     <div
-      class="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 font-mono text-sm space-y-2"
+      class="animate-fade-in-up bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 font-mono text-sm space-y-2"
+      style="animation-delay: 300ms;"
     >
-      <p class="text-zinc-400 dark:text-zinc-500">// quick facts</p>
+      <p class="text-zinc-400 dark:text-zinc-500 cursor-blink">// quick facts</p>
       <p>
         <span class="text-accent">const</span>
         <span class="text-zinc-700 dark:text-zinc-300">location =</span>

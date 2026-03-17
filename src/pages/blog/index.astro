@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
 
-const rawPosts = import.meta.glob('../../content/blog/*.md', { eager: true });
+//TODO: review
+// const rawPosts = import.meta.glob('../../content/blog/*.md', { eager: true });
 
-const posts = Object.values(rawPosts)
-  .map((post: any) => post.frontmatter)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+// const posts = Object.values(rawPosts)
+//   .map((post: any) => post.frontmatter)
+//   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const allBlogPosts = await getCollection("blog");
+
 ---
 
 <Layout title="Blog | Dev Portfolio" description="Technical writing on software development">
@@ -16,12 +21,12 @@ const posts = Object.values(rawPosts)
     <h1 class="text-4xl font-bold mb-2">Blog</h1>
     <p class="text-zinc-400 mb-12">Thoughts on software development and engineering.</p>
     <div class="space-y-px">
-      {posts.map(({ title, date, description, slug }) => (
+      {allBlogPosts.map(({ data: { title, date, description, slug } }) => (
         <a
           href={`/blog/${slug}`}
           class="group flex items-start gap-6 py-5 border-b border-zinc-800 hover:border-zinc-600 transition-colors"
         >
-          <time class="text-zinc-500 font-mono text-sm flex-shrink-0 pt-0.5">{date}</time>
+          <time class="text-zinc-500 font-mono text-sm shrink-0 pt-0.5">{date}</time>
           <div>
             <h2 class="font-medium group-hover:text-accent transition-colors mb-1">{title}</h2>
             <p class="text-zinc-400 text-sm">{description}</p>

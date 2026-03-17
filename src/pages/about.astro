@@ -1,2 +1,64 @@
 ---
+import Card from "../components/Card.astro";
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
 ---
+
+<Layout description="About me" title="Claudvs 🐈">
+    <Nav />
+    <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
+        <div class="flex flex-col gap-4">
+            <Card label="🧑‍🚀" id="0001" image="/img/claud.png" />
+
+            <Card label="human">
+                <div
+                    class="flex flex-col gap-4 font-mono text-sm text-black dark:text-white"
+                >
+                    <p>
+                        Soy alguien que disfruta construir cosas… a veces con
+                        código, a veces con ideas, y otras simplemente
+                        observando.
+                    </p>
+                    <p>
+                        Trabajo como frontend developer, pero más allá de eso,
+                        me gusta pensar que lo mío es darle forma a cosas
+                        complejas para que se sientan simples. Paso bastante
+                        tiempo creando interfaces, resolviendo problemas raros y
+                        afinando detalles que probablemente nadie note… pero que
+                        hacen que todo funcione mejor.
+                    </p>
+                    <p>
+                        Fuera del trabajo, me gusta mucho lo tranquilo. Prefiero
+                        un buen café, una playlist, y tiempo para pensar o crear
+                        algo por mi cuenta.
+                    </p>
+                    <p>
+                        Me gusta la fotografía, sobre todo capturar momentos
+                        simples: calles, luces, detalles que normalmente pasan
+                        desapercibidos. También disfruto dibujar en el iPad,
+                        experimentar con ideas visuales o simplemente dejar que
+                        algo salga sin mucha estructura.
+                    </p>
+                    <p>
+                        Soy más de frío que de calor, de montaña que de playa.
+                        Me gusta viajar en auto, sin mucho plan, solo con una
+                        dirección clara y tiempo para explorar.
+                    </p>
+
+                    <p>
+                        También soy bastante curioso. Me gusta aprender
+                        constantemente: nuevas tecnologías, nuevas formas de
+                        construir interfaces, o incluso cosas fuera del mundo
+                        tech como café, diseño o creatividad.
+                    </p>
+                    <p>
+                        En el día a día, paso entre código, ideas y pequeños
+                        experimentos. Y aunque trabajo en sistemas bastante
+                        complejos, siempre intento mantener una forma simple de
+                        ver las cosas.
+                    </p>
+                </div>
+            </Card>
+        </div>
+    </main>
+</Layout>

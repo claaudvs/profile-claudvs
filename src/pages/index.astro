@@ -1,41 +1,24 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Skills from '../components/Skills.astro';
-import Projects from '../components/Projects.astro';
-import BlogPreview from '../components/BlogPreview.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import SocialLinks from '../components/core/SocialLinks.astro';
-
-const posts = [
-  {
-    title: 'Building Fast APIs with Node.js',
-    date: '2026-02-10',
-    description: 'Practical patterns for building high-throughput REST APIs with Node.js and TypeScript.',
-    slug: 'building-fast-apis',
-  },
-  {
-    title: 'TypeScript Patterns I Use Daily',
-    date: '2026-01-22',
-    description: 'A handful of TypeScript patterns that make codebases more maintainable and catch bugs earlier.',
-    slug: 'typescript-tips',
-  },
-];
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import BlogPreview from "../components/BlogPreview.astro";
+import Skills from "../components/Skills.astro";
+import Footer from "../components/Footer.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout title="Dev Portfolio" description="Personal developer portfolio">
   <Nav />
   <main>
     <Hero />
-    <!-- <Skills /> -->
+    <Skills />
     <!-- <About /> -->
-    <Projects />
-    <BlogPreview posts={posts} />
+    <!-- <Projects /> -->
+    <BlogPreview />
+    <Contact />
     <!-- 
-    <Contact /> -->
+     -->
   </main>
-  <!-- <Footer /> -->
+  <Footer />
 </Layout>

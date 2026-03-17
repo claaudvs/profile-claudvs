@@ -1,42 +1,49 @@
 ---
 const categories = [
   {
-    title: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Python', 'SQL'],
+    title: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "SQL"],
   },
   {
-    title: 'Frontend',
-    items: ['React', 'Astro', 'Next.js', 'TailwindCSS'],
+    title: "Frontend",
+    items: ["React", "Astro", "Next.js", "Angular", "TailwindCSS"],
   },
   {
-    title: 'Backend',
-    items: ['Node.js', 'Express', 'PostgreSQL', 'Redis'],
+    title: "Backend",
+    items: ["Node.js", "Express", "PostgreSQL"],
   },
   {
-    title: 'Tools',
-    items: ['Git', 'Docker', 'Linux', 'CI/CD'],
+    title: "Tools",
+    items: ["Git", "Docker",  "CI/CD"],
   },
 ];
 ---
 
-<section id="skills" class="py-24 border-t border-zinc-200 dark:border-zinc-800">
+<section
+  id="skills"
+  class="py-24 border-t border-zinc-200 dark:border-zinc-800"
+>
   <div class="max-w-5xl mx-auto px-6">
-    <p class="font-mono text-accent text-sm mb-2" data-reveal>02. skills</p>
-    <h2 class="text-3xl font-bold mb-12" data-reveal>Technical Skills</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal="stagger">
-      {categories.map(({ title, items }) => (
-        <div class="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5">
-          <h3 class="text-sm font-semibold text-zinc-600 dark:text-zinc-300 mb-4 uppercase tracking-wider">{title}</h3>
-          <ul class="space-y-2">
-            {items.map((item) => (
-              <li class="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 text-sm">
-                <span class="w-1 h-1 rounded-full bg-accent flex-shrink-0"></span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <p class="font-mono text-accent text-sm mb-2" data-reveal>01. skills</p>
+    <h2 class="text-3xl font-bold mb-12" data-reveal>Skills</h2>
+
+    <div class="space-y-8" data-reveal="stagger">
+      {
+        categories.map((category) => (
+          <div>
+            <p class="font-mono text-zinc-400 dark:text-zinc-500 text-xs mb-3">
+              // {category.title.toLowerCase()}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {category.items.map((skill) => (
+                <span class="px-3 py-1 rounded-full text-sm font-mono border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-accent hover:text-accent transition-colors duration-200">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

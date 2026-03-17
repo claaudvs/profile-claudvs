@@ -1,40 +1,42 @@
 ---
-interface Post {
-  title: string;
-  date: string;
-  description: string;
-  slug: string;
-}
+import { getCollection } from "astro:content";
 
-interface Props {
-  posts: Post[];
-}
-
-const { posts } = Astro.props;
+const allBlogPosts = await getCollection("blog");
 ---
 
 <section id="blog" class="py-24 border-t border-zinc-200 dark:border-zinc-800">
   <div class="max-w-5xl mx-auto px-6">
-    <p class="font-mono text-accent text-sm mb-2">04. blog</p>
-    <div class="flex items-end justify-between mb-12">
+    <p class="font-mono text-accent text-sm mb-2" data-reveal>02. blog</p>
+    <div class="flex items-end justify-between mb-12" data-reveal>
       <h2 class="text-3xl font-bold">Writing</h2>
-      <a href="/blog" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+      <a
+        href="/blog"
+        class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
         All posts →
       </a>
     </div>
     <div class="space-y-px" data-reveal="stagger">
-      {posts.map(({ title, date, description, slug }) => (
-        <a
-          href={`/blog/${slug}`}
-          class="group flex items-start gap-6 py-5 border-b border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
-        >
-          <time class="text-zinc-400 dark:text-zinc-500 font-mono text-sm shrink-0 pt-0.5">{date}</time>
-          <div>
-            <h3 class="font-medium group-hover:text-accent transition-colors mb-1">{title}</h3>
-            <p class="text-zinc-500 dark:text-zinc-400 text-sm">{description}</p>
-          </div>
-        </a>
-      ))}
+      {
+        allBlogPosts.map((post) => (
+          <a
+            href={`/blog/${post.data.slug}`}
+            class="group flex items-start gap-6 py-5 border-b border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
+          >
+            <time class="text-zinc-400 dark:text-zinc-500 font-mono text-sm shrink-0 pt-0.5">
+              {post.data.date}
+            </time>
+            <div>
+              <h3 class="font-medium group-hover:text-accent transition-colors mb-1">
+                {post.data.title}
+              </h3>
+              <p class="text-zinc-500 dark:text-zinc-400 text-sm">
+                {post.data.description}
+              </p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -12,7 +12,7 @@ const { title, description, tags, github, live, featured = false } = Astro.props
 ---
 
 <article class:list={[
-  'group relative bg-zinc-50 dark:bg-zinc-900 border rounded-xl p-6 flex flex-col gap-4 transition-colors',
+  'group relative bg-zinc-50 dark:bg-zinc-900 border rounded-xl p-6 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-zinc-200/60 dark:hover:shadow-zinc-950/60',
   featured
     ? 'border-accent/40 hover:border-accent'
     : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600',
