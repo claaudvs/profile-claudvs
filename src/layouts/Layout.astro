@@ -10,18 +10,16 @@ interface Props {
 }
 
 const {
-  title = "Your Name — Full-Stack Developer",
-  description = "Full-stack developer building fast, accessible web applications with a focus on clean code and great user experience.",
+  title = "Claudio Vargas — Frontend Developer",
+  description = "Frontend engineer specialized in React and Next.js, building fast, accessible web applications with a focus on clean code and great user experience.",
   image = "/og-image.png",
   url = Astro.url.href,
   type = "website",
 } = Astro.props;
 
-const siteName = "Your Name";
+const siteName = "Claudio Vargas";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
   .href;
-
-  console.log('canonical', canonicalUrl);
 ---
 
 <!doctype html>
@@ -52,8 +50,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@yourusername" />
-    <meta name="twitter:creator" content="@yourusername" />
+    <meta name="twitter:site" content="@cloudvs" />
+    <meta name="twitter:creator" content="@cloudvs" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
@@ -67,7 +65,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 

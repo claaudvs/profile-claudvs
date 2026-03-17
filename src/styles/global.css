@@ -3,9 +3,15 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-display: "Syne", system-ui, sans-serif;
   --color-accent: #6366f1;
+}
+
+/* Apply display font to headings */
+h1, h2, h3 {
+  font-family: var(--font-display);
 }
 
 /* ─── Keyframes ─────────────────────────────────────────────── */

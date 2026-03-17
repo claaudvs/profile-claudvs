@@ -1,66 +1,99 @@
 ---
-import Card from "./Card.astro";
 import AvailableStatus from "./shared/AvailableStatus.astro";
 import SocialLinks from "./shared/SocialLinks.astro";
 
-const roles = [
-  "Frontend Developer",
-  "Open Source Contributor",
-  "TypeScript Enthusiast",
-];
 const description =
-  "Hi, I'm Claudio Vargas, a frontend engineer specialized in React and Next.js.";
+  "Frontend engineer specialized in React and Next.js, building fast and accessible interfaces.";
 ---
 
-<section id="home" class="relative max-h-screen flex pt-14 overflow-hidden">
+<section
+  id="home"
+  class="relative min-h-screen flex items-center pt-14 overflow-hidden"
+>
+  <!-- Grid background -->
   <div
     class="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-size-[48px_48px] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)]"
   >
   </div>
-  <Card className="w-full h-auto" title="Hello 🍕" description={description}>
-    <div class="animate-fade-in-up" style="animation-delay: 100ms;">
-      <SocialLinks isSocialNetwork={false} />
-    </div>
-    <div class="animate-fade-in-up" style="animation-delay: 200ms;">
-      <AvailableStatus />
+
+  <div
+    class="max-w-5xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24"
+  >
+    <!-- Left: name + role + intro -->
+    <div class="space-y-6">
+      <div class="animate-fade-in-up" style="animation-delay: 0ms;">
+        <p class="font-mono text-accent text-sm mb-4">Hi, I'm</p>
+        <h1
+          class="text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-zinc-900 dark:text-zinc-100"
+        >
+          Claudio<br />Vargas
+        </h1>
+        <p
+          class="mt-4 text-xl text-accent font-semibold tracking-tight"
+        >
+          <span id="hero-role">Frontend Developer</span>
+        </p>
+      </div>
+
+      <p
+        class="animate-fade-in-up text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-md"
+        style="animation-delay: 100ms;"
+      >
+        {description}
+      </p>
+
+      <div
+        class="animate-fade-in-up flex flex-wrap items-center gap-4"
+        style="animation-delay: 200ms;"
+      >
+        <SocialLinks isSocialNetwork={false} />
+        <AvailableStatus />
+      </div>
     </div>
 
+    <!-- Right: code snapshot -->
     <div
-      class="animate-fade-in-up bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 font-mono text-sm space-y-2"
+      class="animate-fade-in-up bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 font-mono text-sm space-y-2 shadow-sm"
       style="animation-delay: 300ms;"
     >
-      <p class="text-zinc-400 dark:text-zinc-500 cursor-blink">
+      <p class="text-zinc-400 dark:text-zinc-500 cursor-blink mb-4">
         // quick facts
       </p>
       <p>
         <span class="text-accent">const</span>
-        <span class="text-zinc-700 dark:text-zinc-300">location =</span>
-        <span class="text-emerald-600 dark:text-emerald-400">"Remote"</span>;
+        <span class="text-zinc-700 dark:text-zinc-300"> location =</span>
+        <span class="text-emerald-600 dark:text-emerald-400"> "Remote"</span>;
       </p>
       <p>
         <span class="text-accent">const</span>
-        <span class="text-zinc-700 dark:text-zinc-300">experience =</span>
-        <span class="text-emerald-600 dark:text-emerald-400">"5+ years"</span>;
+        <span class="text-zinc-700 dark:text-zinc-300"> experience =</span>
+        <span class="text-emerald-600 dark:text-emerald-400"> "5+ years"</span>;
       </p>
       <p>
         <span class="text-accent">const</span>
-        <span class="text-zinc-700 dark:text-zinc-300">focus =</span>
-        <span class="text-emerald-600 dark:text-emerald-400"
-          >"Web Development"</span
-        >;
+        <span class="text-zinc-700 dark:text-zinc-300"> focus =</span>
+        <span class="text-emerald-600 dark:text-emerald-400"> "Web Development"</span>;
       </p>
       <p>
         <span class="text-accent">const</span>
-        <span class="text-zinc-700 dark:text-zinc-300">available =</span>
-        <span class="text-blue-500 dark:text-blue-400">true</span>;
+        <span class="text-zinc-700 dark:text-zinc-300"> available =</span>
+        <span class="text-blue-500 dark:text-blue-400"> true</span>;
+      </p>
+      <p class="pt-2 border-t border-zinc-200 dark:border-zinc-800">
+        <span class="text-zinc-400 dark:text-zinc-500">// stack</span>
+      </p>
+      <p>
+        <span class="text-accent">const</span>
+        <span class="text-zinc-700 dark:text-zinc-300"> stack =</span>
+        <span class="text-emerald-600 dark:text-emerald-400"> ["React", "Next.js", "TypeScript"]</span>;
       </p>
     </div>
-  </Card>
+  </div>
 </section>
 
 <script>
   const roles = [
-    "Full-Stack Developer",
+    "Frontend Developer",
     "Open Source Contributor",
     "TypeScript Enthusiast",
   ];
@@ -85,5 +118,6 @@ const description =
     transition:
       opacity 0.3s ease,
       transform 0.3s ease;
+    display: inline-block;
   }
 </style>

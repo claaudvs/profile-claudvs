@@ -1,6 +1,6 @@
 ---
 title: "Cómo construí mi portfolio con Astro y vibe coding controlado en 2 días"
-date: "2026-03-17"
+date: "2026-03-16"
 description: "Un relato honesto de cómo combiné AI-assisted development con criterio propio para levantar un portfolio moderno, rápido y mantenible sin perder el control del código."
 slug: "vibe-coding"
 ---
