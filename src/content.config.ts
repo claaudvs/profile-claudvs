@@ -21,5 +21,17 @@ const blog = defineCollection({
   }),
 });
 
+const blogChill = defineCollection({
+  loader: glob({ base: './src/content/blog-chill', pattern: '**/*.{md,mdx}' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string(),
+    slug: z.string(),
+    pubDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
+  }),
+});
+
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { blog };
+export const collections = { blog, blogChill };

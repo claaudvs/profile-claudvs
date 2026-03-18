@@ -1,0 +1,23 @@
+---
+import Greeting from "../components/islands/Greeting";
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Projects — Claudio Vargas"
+    description="Professional projects developed throughout my career in the banking sector."
+>
+    <Nav />
+    <main class="max-w-5xl mx-auto px-6 py-24">
+        <h2>mis islas</h2>
+        <h4>Client:load</h4>
+        <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+        <code
+            >Revisit your page and compare the two components. The second button
+            works because the client:load directive tells Astro to send and
+            rerun its JavaScript on the client when the page loads, making the
+            component interactive. This is called a hydrated component.</code
+        >
+    </main>
+</Layout>
