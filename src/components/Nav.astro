@@ -2,14 +2,20 @@
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/';
 
-const links = [
+interface NavLink {
+  href: string;
+  label: string;
+  anchor: boolean;
+  chill?: boolean;
+}
+
+const links: NavLink[] = [
   { href: '/about', label: 'Me 🧑‍💻', anchor: false },
   { href: '#skills', label: 'Skills 🧑‍🚀', anchor: true },
   { href: '/projects', label: 'Projects 🚀', anchor: false },
   { href: '/blog', label: 'Blog 🍕', anchor: false },
   { href: '#contact', label: 'Contact ✉️', anchor: true },
-  { href: '/chill', label: 'Chill 🍹', anchor: false },
-
+  { href: '/chill', label: 'Chill 🐈', anchor: false, chill: true },
 ];
 ---
 
@@ -21,13 +27,16 @@ const links = [
     <div class="flex items-center gap-6">
       <!-- Desktop links -->
       <ul class="hidden md:flex items-center gap-6">
-        {links.map(({ href, label, anchor }) => (
+        {links.map(({ href, label, anchor, chill }) => (
           <li>
             <a
               href={anchor ? (isHome ? href : `/${href}`) : href}
-              class="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+              id={chill ? 'chill-link' : undefined}
+              class={chill
+                ? "text-sm text-zinc-500 dark:text-zinc-400 transition-colors chill-nav-link"
+                : "text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"}
             >
-              {label}
+              {chill ? <><span id="chill-word">Chill</span>{' 🐈'}</> : label}
             </a>
           </li>
         ))}
@@ -63,6 +72,13 @@ const links = [
     </div>
   </nav>
 </header>
+
+<!-- TV Static overlay (chill hover effect) -->
+<canvas
+  id="static-canvas"
+  aria-hidden="true"
+  class="pointer-events-none fixed inset-0 z-40 opacity-0 transition-opacity duration-300"
+></canvas>
 
 <!-- Mobile menu overlay -->
 <div
@@ -119,6 +135,83 @@ const links = [
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 
+  // ── Chill effects ────────────────────────────────────────────
+  const chillLink = document.getElementById('chill-link');
+  const chillWord = document.getElementById('chill-word');
+  const staticCanvas = document.getElementById('static-canvas') as HTMLCanvasElement | null;
+
+  let rafId: number | null = null;
+  let glitchOffset = 0;
+
+  function resizeCanvas() {
+    if (!staticCanvas) return;
+    staticCanvas.width = window.innerWidth;
+    staticCanvas.height = window.innerHeight;
+  }
+
+  function drawStatic() {
+    if (!staticCanvas) return;
+    const ctx = staticCanvas.getContext('2d');
+    if (!ctx) return;
+
+    const w = staticCanvas.width;
+    const h = staticCanvas.height;
+
+    // Random pixel noise
+    const imageData = ctx.createImageData(w, h);
+    const d = imageData.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const v = (Math.random() * 255) | 0;
+      d[i]     = v;
+      d[i + 1] = v;
+      d[i + 2] = v;
+      d[i + 3] = (Math.random() * 140 + 50) | 0;
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+    // Scanlines
+    ctx.fillStyle = 'rgba(0,0,0,0.18)';
+    for (let y = 0; y < h; y += 3) {
+      ctx.fillRect(0, y, w, 1);
+    }
+
+    // Occasional horizontal glitch band
+    if (Math.random() < 0.25) {
+      glitchOffset = (Math.random() * 40 - 20) | 0;
+      const bandY = (Math.random() * h) | 0;
+      const bandH = (Math.random() * 30 + 4) | 0;
+      const slice = ctx.getImageData(0, bandY, w, bandH);
+      ctx.putImageData(slice, glitchOffset, bandY);
+    }
+
+    rafId = requestAnimationFrame(drawStatic);
+  }
+
+  function startStatic() {
+    resizeCanvas();
+    staticCanvas!.style.opacity = '1';
+    if (!rafId) drawStatic();
+  }
+
+  function stopStatic() {
+    staticCanvas!.style.opacity = '0';
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  chillLink?.addEventListener('mouseenter', () => {
+    chillWord?.classList.add('rainbow-active');
+    startStatic();
+  });
+  chillLink?.addEventListener('mouseleave', () => {
+    chillWord?.classList.remove('rainbow-active');
+    stopStatic();
+  });
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
   // Mobile menu
   const menu = document.getElementById('mobile-menu')!;
   const openBtn = document.getElementById('menu-open')!;
@@ -165,5 +258,33 @@ const links = [
 <style>
   .mobile-link-item {
     transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* ── Chill psychedelic text ───────────────────────────────── */
+  @keyframes rainbow-shift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  #chill-word {
+    display: inline;
+  }
+
+  #chill-word.rainbow-active {
+    background: linear-gradient(
+      90deg,
+      #ff0055, #ff7700, #ffee00,
+      #00ff88, #00cfff, #a855f7,
+      #ff0055
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-shift 0.7s linear infinite;
+  }
+
+  #static-canvas {
+    transition: opacity 0.3s ease;
   }
 </style>
