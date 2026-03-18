@@ -4,6 +4,23 @@ import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const experience = [
+   {
+    company: "Personal",
+    role: "Frontend Developer",
+    period: "Present",
+    projects: [
+      {
+        title: "Profile Website",
+        description:
+          "Personal portfolio website showcasing projects, skills, and experience. Built with Astro and Tailwind CSS, focusing on performance, accessibility, and modern web standards.",
+        tags: ["Astro", "Tailwind CSS", "JavaScript", "HTML", "CSS"],
+        github: 'https://github.com/claaudvs/profile-claudvs',
+        live: 'https://claudvs.vercel.app/',
+        featured: true,
+      },
+       
+    ],
+  },
   {
     company: "Banco Solidario",
     role: "Frontend Developer",
@@ -16,7 +33,7 @@ const experience = [
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
         github: null,
         live: null,
-        featured: true,
+        featured: false,
       },
       {
         title: "Internal API Integration Layer",
